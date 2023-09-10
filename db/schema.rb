@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_093640) do
     t.string "stripe_customer_id", default: ""
     t.string "stripe_card_id", default: ""
     t.datetime "remember_created_at"
+    t.string "authentication_token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
