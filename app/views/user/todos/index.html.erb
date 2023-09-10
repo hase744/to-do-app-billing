@@ -1,0 +1,47 @@
+<title>To-Do List</title>
+<h1>To-Do List</h1>
+<%if user_signed_in? %>
+<%= link_to "他の人のToDo", user_todos_path(user:"others") %>
+<%= link_to "自分のToDo", user_todos_path(user:"myself") %>
+<% end %>
+<%= paginate @todos %>
+<div class="todo-list">
+    <% @todos.each do |todo| %>
+        <div class="todo-item">
+            <h3><a href="<%= user_todo_path(todo.id) %>"><%= todo.title %></a></h3>
+            <p><%= todo.description %></p>
+            <p class="deadline"><%= Todo.human_attribute_name(:deadline) %> <b><%= from_now(todo.deadline)   %></b>（<%=readable_datetime(todo.deadline)%>）</p>
+            <p class="deadline"><%= Todo.human_attribute_name(:achieve_info)%> <%= todo.achieve_info %></p>
+        </div>
+    <% end %>
+</div>
+<%= paginate @todos %>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .todo-item {
+        border: 1px solid #ccc;
+        margin: 10px 0;
+        padding: 10px;
+        background-color: #f9f9f9;
+    }
+
+    h3 {
+        margin: 0;
+    }
+
+    p {
+        margin: 5px 0;
+    }
+
+    .deadline {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+</style>

@@ -1,0 +1,80 @@
+<div class="to-do-show">
+        <h1><%= Todo.human_attribute_name(:title) %></h1>
+        <table>
+            <tr>
+                <td><%= Todo.human_attribute_name(:description) %></td>
+                <td><%= @todo.description %></td>
+            </tr>
+            <tr>
+                <td><%= Todo.human_attribute_name(:deadline) %></td>
+                <td><b><%= from_now(@todo.deadline)   %></b>（<%=readable_datetime(@todo.deadline)%>）</td>
+            </tr>
+            <tr>
+                <td><%= Todo.human_attribute_name(:name) %></td>
+                <td><%= @todo.user&.name %></td>
+            </tr>
+            <tr>
+                <td><%= Todo.human_attribute_name(:price) %></td>
+                <td><%= @todo.price %></td>
+            </tr>
+            <tr>
+                <td><%= Todo.human_attribute_name(:achieve_info) %></td>
+                <td><%= @todo.achieve_info %></td>
+            </tr>
+        </table>
+        <div class="state-button achieve-button">
+            <%= link_to "達成した", user_todo_achieve_path(@todo.id) if !@todo.is_achieved?%>
+        </div>
+        <% if @todo.deadline < DateTime.now%>
+            <div class="state-button fail-button">
+            <%= link_to "失敗した", user_todo_fail_path(@todo.id) if !@todo.is_failed?%>
+            </div>
+        <% end %>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .to-do-show {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .todo-details {
+            margin-top: 20px;
+        }
+
+        .todo-details p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .state-button {
+            display:inline-block;
+            margin-top: 20px;
+        }
+
+        .state-button a {
+            text-decoration: none;
+            padding: 10px 20px;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .fail-button a:hover {
+            background-color: #0056b3;
+        }
+        .fail-button a{
+            background-color: #0056b3;
+        }
+        .achieve-button a{
+            background-color: orange;
+        }
+    </style>

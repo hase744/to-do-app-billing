@@ -1,0 +1,120 @@
+<h1>新規 Todo</h1>
+<div class="to-do-container">
+     <%= render 'shared/error_message', model:@todo %>
+    <div class="todo-form">
+        <%= form_with model: @todo, url: user_todos_path, method: 'POST' do |form| %>
+            <div class="field">
+                <%= form.label :title %>
+                <%= form.text_field :title, id: 'title' %>
+            </div>
+
+            <div class="field">
+                <%= form.label :description %>
+                <%= form.text_area :description, id: 'description', rows: 4 %>
+            </div>
+
+            <div class="field">
+                <%= form.label :how_to_judge %>
+                <%= form.select :how_to_judge,  {'自分'=>'me', '他の人'=>'other'}, id: 'how_to_judge'%></br>
+            </div>
+
+            <div class="field" id='other_user_field'>
+                <%= form.label :other_user_email %>
+                <%= form.text_field :other_user_email, id: 'other_user' %>
+            </div></br>
+            
+            <div class="field" id='other_user_field'>
+                <%= form.check_box :is_pubished %>
+                <span>公開設定</span>
+            </div></br>
+            
+            <div class="field">
+                <%= form.label :deadline %>
+                <%= form.datetime_field :deadline, id: 'due-date' %>
+            </div>
+
+            <div class="field">
+                <%= form.label :price %>
+                <%= form.select :price, price_list, id: 'price'%></br>
+            </div>
+
+            <div class="add-button">
+                <%= form.submit "Add Todo" %>
+            </div>
+        <% end %>
+    </div>
+</div>
+<style>
+.to-do-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #333;
+}
+
+.todo-form {
+    margin-top: 20px;
+}
+
+.todo-form label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.todo-form input[type="text"],
+.todo-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.add-button {
+    text-align: center;
+}
+
+.add-button button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button button:hover {
+    background-color: #0056b3;
+}
+</style>
+
+<script>
+// Get references to the select and text fields
+var selectField = document.getElementById('todo_how_to_judge');
+var otherUserField = document.getElementById('other_user_field');
+
+// Add an event listener to the select field
+judge_emai_display();
+selectField.addEventListener('change', function () {
+  judge_emai_display();
+});
+
+function judge_emai_display(){
+  // Check if the selected option is 'other'
+  if (selectField.value === 'other') {
+    // If 'other' is selected, show the otherUserField
+    otherUserField.style.display = 'block'; // You can use 'block' or 'inline-block' as per your styling needs
+  } else {
+    // If any other option is selected, hide the otherUserField
+    otherUserField.style.display = 'none';
+  }
+}
+</script>

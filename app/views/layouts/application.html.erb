@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your App Name</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Add your stylesheets and JavaScript includes here -->
+    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <%= Gon::Base.render_data %>
+    <%= include_gon %>
+    <%= javascript_include_tag "/javascript/application.js", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+  <%=render 'layouts/head'%>
+    <div class="main-area mt-4">
+      <%= yield %>
+    </div>
+
+    <footer class="mt-5">
+      <!-- Your footer content goes here -->
+      <div class="main-area">
+        <p>&copy; <%= Time.now.year %> Your App Name. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
+<style>
+
+body {
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.main-area{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.navbar {
+  background-color: #ffffff; /* Background color for the navbar */
+  border-bottom: 1px solid #e5e5e5; /* Optional: Add a border at the bottom */
+  padding: 10px 0; /* Optional: Add padding to the top and bottom */
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 24px; /* Adjust the font size as needed */
+  font-weight: bold;
+  color: #333; /* Text color for the brand/logo */
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  color: #007bff; /* Text color on hover */
+}
+
+.navbar-nav {
+  list-style-type: none; /* Remove list bullets */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  margin-right: 20px; /* Spacing between navigation items */
+}
+
+.nav-link {
+  font-size: 16px; /* Adjust the font size as needed */
+  color: #333; /* Text color for the links */
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #007bff; /* Text color on hover */
+}
+</style>

@@ -1,0 +1,26 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー 
+      todo: ToDo
+    attributes:
+      user:
+        id: ID
+        # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+        first_name: 名前
+        last_name: 姓
+        email: メールアドレス
+        file: プロフィール画像
+        crypted_password: パスワード
+      todo:
+          title: タイトル
+          name: ユーザー名
+          description: 説明
+          deadline: 達成期限
+          achieved_at: 達成時刻
+          is_achieved: 達成したか
+          price: 金額
+          achieve_info: 達成情報
+          how_to_judge: 達成の確認者
+          other_user_email: 達成の確認者のemail
+          is_published: 公開

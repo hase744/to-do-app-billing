@@ -1,0 +1,25 @@
+
+<header>
+<!-- Your header content goes here -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="nav-container">
+    <%= link_to 'To-Do-Billing', root_path, class: 'navbar-brand' %>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <%= link_to '新規作成', new_user_todo_path, class: 'nav-link' %>
+      </li>
+      <!-- Add more navigation links as needed -->
+    </ul>
+  </div>
+</nav>
+</header>
+<div class="notice_area">
+<%= content_tag(:spin, flash.notice, class:"notice") if flash.notice%>
+</div>
+<style>
+.notice_area{
+    background-color: orange;
+    width: 100%;
+}
+</style>

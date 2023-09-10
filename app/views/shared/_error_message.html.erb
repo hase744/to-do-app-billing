@@ -1,0 +1,23 @@
+<%if model %>
+  <%if model.errors.full_messages.count > 0 %>
+      <div class="error_component_area">
+        <% model.errors.full_messages.each do |msg| %>
+          <div class="alert alert-danger">
+          <i class='fas fa-exclamation-triangle'></i><%= msg %>
+          </div>
+        <% end %>
+      </div>
+  <% end %>
+<% end %>
+<style>
+.error_component_area{
+    background-color: pink;
+    border: 3px solid red;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    .error_component_flame{
+        width: calc(100% - 20px);
+    }
+}
+</style>
